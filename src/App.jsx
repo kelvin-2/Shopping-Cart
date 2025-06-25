@@ -28,6 +28,9 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <div class="bg-red-500 text-white p-4">
+        Tailwind is working!
+      </div>
     </>
   )
 }
