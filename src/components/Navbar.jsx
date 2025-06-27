@@ -82,11 +82,11 @@ function NavBar() {
                         className='relative bg-white bg-opacity-20 backdrop-blur-sm rounded-full p-3 text-white hover:bg-opacity-30 hover:scale-110 transition-all duration-300 shadow-lg'
                     > 
                         <ShoppingCart size={24} />
-                        {cartCount > 0 && (
+                        {/* {cartCount > 0 && (
                             <span className='absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold animate-pulse'>
                                 {cartCount}
                             </span>
-                        )}
+                        )} */}
                     </Link>
 
                     {/* Mobile Menu Button */}
