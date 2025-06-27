@@ -1,2 +1,13 @@
 import NavBar from "./Navbar";
-import React, { useState } from 'react';
+import { Outlet } from 'react-router-dom';
+
+function Layout() {
+    return (
+        <>
+            <NavBar />
+            <Outlet />
+        </>
+    )
+}
+
+export default Layout
