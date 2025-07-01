@@ -27,7 +27,6 @@ export function CartProvider({childern}){
     const removeFromCart = (itemId) => {
         setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
     };
-      
 
     const cartCount = cartItems.length; //the amount of thing in the carts 
 
