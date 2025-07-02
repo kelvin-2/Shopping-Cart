@@ -4,16 +4,18 @@ import './App.css'
 import NavBar from './components/Navbar'
 import Layout  from './components/Layout'
 import Home from './Pages/HomePage'
-
+import {CartProvider} from './components/CartContext';
 function App() {
   return (
     <BrowserRouter>
-     <Routes>
-      <Route path="/" element ={<Layout/>}>
-        <Route index element ={<Home/>}/>
-        
-      </Route>
-     </Routes>
+     <CartProvider>
+      <Routes>
+          <Route path="/" element ={<Layout/>}>
+            <Route index element ={<Home/>}/>
+            
+          </Route>
+      </Routes>
+     </CartProvider>
     </BrowserRouter>
   )
 }

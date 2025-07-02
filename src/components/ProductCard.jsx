@@ -2,23 +2,37 @@ import React, { useState } from "react";
 import { Heart, ShoppingCart, Star, Check } from "lucide-react";
 import { useCart } from './CartContext';
 
-function ProductCard () {
+function ProductCard({ 
+    product = {
+        id: 1,
+        name: "Premium Wireless Headphones",
+        price: 299.99,
+        originalPrice: 399.99,
+        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop",
+        rating: 4.5,
+        reviews: 128,
+        description: "High-quality wireless headphones with noise cancellation",
+        inStock: true,
+        discount: 25
+    }
+}) {
     const [isHovered, setIsHovered] = useState(false);
     const [justAdded, setJustAdded] = useState(false);
     
     const { addToCart, cartItems } = useCart();
 
-    const handleAddToCart=() =>{
+    const handleAddToCart = () => {
         addToCart(product);
-        //for feedback 
-        setJustAdded(true)
-        setTimeout(() =>setJustAdded(false),200);
+        // Show feedback for 2 seconds (not 200ms)
+        setJustAdded(true);
+        setTimeout(() => setJustAdded(false), 2000);
     };
 
-    const isInCart= cartItems.some(item=> item .id === product.id);
-    const cartItem= cartitem.find( item => item.id === product.id);
+    // Fixed: cartitem → cartItems (case sensitive!)
+    const isInCart = cartItems.some(item => item.id === product.id);
+    const cartItem = cartItems.find(item => item.id === product.id);
 
- return(
+    return(
         <div 
             className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 max-w-sm mx-auto overflow-hidden"
             onMouseEnter={() => setIsHovered(true)}
@@ -39,16 +53,6 @@ function ProductCard () {
                     </div>
                 )}
                 
-                {/* Wishlist Button */}
-                <button 
-                    onClick={toggleWishlist}
-                    className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors"
-                >
-                    <Heart 
-                        className={`w-5 h-5 ${isWishlisted ? 'fill-red-500 text-red-500' : 'text-gray-400'}`}
-                    />
-                </button>
-                
                 {/* Stock Status */}
                 {!product.inStock && (
                     <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
@@ -68,21 +72,6 @@ function ProductCard () {
                 <p className="text-gray-600 text-sm mb-3 line-clamp-2">
                     {product.description}
                 </p>
-                
-                {/* Rating */}
-                <div className="flex items-center mb-4">
-                    <div className="flex items-center">
-                        {[...Array(5)].map((_, i) => (
-                            <Star 
-                                key={i} 
-                                className={`w-4 h-4 ${i < Math.floor(product.rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`}
-                            />
-                        ))}
-                    </div>
-                    <span className="ml-2 text-sm text-gray-600">
-                        {product.rating} ({product.reviews} reviews)
-                    </span>
-                </div>
                 
                 {/* Price Section */}
                 <div className="flex items-center justify-between mb-4">
@@ -143,4 +132,4 @@ function ProductCard () {
     )
 }
 
-export default ProductCard
+export default ProductCard  
