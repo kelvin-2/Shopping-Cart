@@ -1,9 +1,9 @@
+// CartContext.js
 import React, { createContext, useContext, useState } from 'react';
 
 const CartContext = createContext();
-// This will hold the cart data and functions to manage it
 
-export function CartProvider({ children }) { // Fixed: "childern" → "children"
+export function CartProvider({ children }) {
     const [cartItems, setCartItems] = useState([]);
 
     const addToCart = (item) => {
@@ -29,6 +29,19 @@ export function CartProvider({ children }) { // Fixed: "childern" → "children"
         setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
     };
 
+    // New function to update quantity
+    const updateQuantity = (itemId, newQuantity) => {
+        if (newQuantity <= 0) {
+            removeFromCart(itemId);
+        } else {
+            setCartItems(prevItems =>
+                prevItems.map(item =>
+                    item.id === itemId ? { ...item, quantity: newQuantity } : item
+                )
+            );
+        }
+    };
+
     // Get total quantity of all items in cart
     const getTotalQuantity = () => {
         return cartItems.reduce((total, item) => total + item.quantity, 0);
@@ -50,7 +63,8 @@ export function CartProvider({ children }) { // Fixed: "childern" → "children"
             totalQuantity,
             removeFromCart,
             clearCart,
-            getTotalPrice
+            getTotalPrice,
+            updateQuantity // Added this new function
         }}>
             {children}
         </CartContext.Provider>
