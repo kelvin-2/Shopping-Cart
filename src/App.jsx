@@ -5,6 +5,8 @@ import NavBar from './components/Navbar'
 import Layout  from './components/Layout'
 import Home from './Pages/HomePage'
 import {CartProvider} from './components/CartContext';
+import Cart from './Pages/CartPage'
+
 function App() {
   return (
     <BrowserRouter>
@@ -12,6 +14,7 @@ function App() {
       <Routes>
           <Route path="/" element ={<Layout/>}>
             <Route index element ={<Home/>}/>
+            <Route path = "/carts" element={<Cart/>}/>
             
           </Route>
       </Routes>
