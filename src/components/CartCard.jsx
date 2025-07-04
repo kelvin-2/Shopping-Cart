@@ -13,34 +13,34 @@ function CartCard({ item }) {
     };
 
     return (
-        <div className='bg-gray-800 rounded-lg p-6 border border-gray-700 hover:border-gray-600 transition duration-200'>
-            <div className='flex items-center gap-4'>
+        <div className='bg-white rounded-xl p-6 border border-gray-200 hover:border-gray-300 hover:shadow-lg transition duration-200 shadow-sm'>
+            <div className='flex items-center gap-6'>
                 {/* Product Image Placeholder */}
-                <div className='w-20 h-20 bg-gray-700 rounded-lg flex items-center justify-center'>
-                    <span className='text-gray-400 text-sm'>IMG</span>
+                <div className='w-24 h-24 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-200'>
+                    <span className='text-gray-400 text-sm font-medium'>IMG</span>
                 </div>
                 
                 {/* Product Details */}
                 <div className='flex-1'>
-                    <h3 className='text-lg font-semibold text-white mb-1'>{item.name}</h3>
-                    <p className='text-gray-400 text-sm mb-2'>
+                    <h3 className='text-lg font-semibold text-gray-800 mb-1'>{item.name}</h3>
+                    <p className='text-gray-600 text-sm mb-3'>
                         R{item.price.toFixed(2)} each
                     </p>
                     
                     {/* Quantity Controls */}
                     <div className='flex items-center gap-3'>
-                        <span className='text-sm text-gray-400'>Quantity:</span>
+                        <span className='text-sm text-gray-600 font-medium'>Quantity:</span>
                         <div className='flex items-center gap-2'>
                             <button
                                 onClick={() => handleQuantityChange(item.quantity - 1)}
-                                className='w-8 h-8 rounded-full bg-gray-700 hover:bg-gray-600 flex items-center justify-center text-white font-bold transition duration-200'
+                                className='w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-700 font-bold transition duration-200 border border-gray-300'
                             >
                                 -
                             </button>
-                            <span className='w-8 text-center font-semibold'>{item.quantity}</span>
+                            <span className='w-8 text-center font-semibold text-gray-800'>{item.quantity}</span>
                             <button
                                 onClick={() => handleQuantityChange(item.quantity + 1)}
-                                className='w-8 h-8 rounded-full bg-gray-700 hover:bg-gray-600 flex items-center justify-center text-white font-bold transition duration-200'
+                                className='w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-700 font-bold transition duration-200 border border-gray-300'
                             >
                                 +
                             </button>
@@ -50,12 +50,12 @@ function CartCard({ item }) {
                 
                 {/* Price and Remove */}
                 <div className='text-right'>
-                    <div className='text-lg font-bold text-white mb-2'>
+                    <div className='text-xl font-bold text-gray-800 mb-3'>
                         R{(item.quantity * item.price).toFixed(2)}
                     </div>
                     <button
                         onClick={() => removeFromCart(item.id)}
-                        className='text-red-400 hover:text-red-300 text-sm font-semibold transition duration-200'
+                        className='text-red-500 hover:text-red-600 text-sm font-semibold transition duration-200 px-3 py-1 rounded-md hover:bg-red-50'
                     >
                         Remove
                     </button>
